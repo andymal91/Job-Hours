@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<title>Registro ore di lavoro</title>
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--tx:#1f2328;--mut:#6b7280;--bd:#e3e1dc;--ac:#2f6f5e;--acx:#fff;--ex:#b45309;--dg:#b91c1c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181a;--card:#222426;--tx:#ececec;--mut:#9ca3af;--bd:#34373a;--ac:#5fb59e;--acx:#10211c;--ex:#fbbf24;--dg:#f87171;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17181a;--card:#222426;--tx:#ececec;--mut:#9ca3af;--bd:#34373a;--ac:#5fb59e;--acx:#10211c;--ex:#fbbf24;--dg:#f87171;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:13px;color:var(--mut);margin-bottom:3px}
+input,select{width:100%;padding:10px;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:10px}
+.full{grid-column:1/-1}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 14px}
+button.p{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:600;width:100%}
+.prev{margin:10px 0 0;color:var(--mut);font-size:14px}
+.prev b{color:var(--tx)}.ex{color:var(--ex)!important}
+.tot{display:flex;gap:10px;margin-top:10px}.tot div{flex:1;text-align:center;background:var(--bg);border-radius:10px;padding:8px}
+.tot span{display:block;font-size:12px;color:var(--mut)}.tot b{font-size:18px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--bd)}
+.row:first-of-type{border-top:0}
+.row small{color:var(--mut);display:block}
+.acts button{padding:6px 10px;font-size:13px;margin-left:4px}
+.del{color:var(--dg)}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hd input{width:auto}
+#st{font-size:12px;color:var(--mut);text-align:center}
+pre{white-space:pre-wrap;font:13px/1.5 system-ui,sans-serif;background:var(--bg);border-radius:10px;padding:10px;margin:10px 0 0}
+:root{--g1:#2f6f5e;--g2:#52b69a;--fe:#2563eb;--sh:0 6px 20px rgba(31,35,40,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--g1:#1f4a3e;--g2:#3a8a73;--fe:#60a5fa;--sh:0 6px 20px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--g1:#1f4a3e;--g2:#3a8a73;--fe:#60a5fa;--sh:0 6px 20px rgba(0,0,0,.45)}
+body{background:radial-gradient(1200px 400px at 50% -100px,color-mix(in srgb,var(--ac) 22%,transparent),transparent),var(--bg)}
+.hero{display:flex;align-items:center;gap:14px;padding:18px;margin-bottom:16px;border-radius:20px;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:var(--sh)}
+.hero .ic{font-size:34px;width:56px;height:56px;display:grid;place-items:center;background:rgba(255,255,255,.18);border-radius:16px}
+.hero h1{margin:0;font-size:24px;letter-spacing:-.3px}
+.hero p{margin:2px 0 0;opacity:.9;font-size:14px}
+.hero p::first-letter{text-transform:uppercase}
+.card{border-radius:20px;box-shadow:var(--sh)}
+.ct{font-weight:700;font-size:17px;margin-bottom:12px}
+input,select{border-radius:12px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+button{transition:transform .1s,background .15s}
+button:active{transform:scale(.97)}
+button.p{padding:13px;font-size:17px;border-radius:14px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border:0;box-shadow:var(--sh)}
+.tot div{border-radius:14px;padding:10px 4px}
+.tot b{font-size:21px}
+.tot div:nth-child(1){background:color-mix(in srgb,var(--ac) 16%,var(--card))}
+.tot div:nth-child(2){background:color-mix(in srgb,var(--fe) 15%,var(--card))}
+.tot div:nth-child(2) b{color:var(--fe)}
+.tot div:nth-child(3){background:color-mix(in srgb,var(--tx) 7%,var(--card))}
+.tot div:nth-child(4){background:color-mix(in srgb,var(--ex) 16%,var(--card))}
+.row{animation:in .25s ease both}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.acts button{border-radius:999px}
+#ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45);place-items:center;padding:20px}
+#ov[hidden]{display:none}
+#ov:not([hidden]){display:grid}
+.dlg{background:var(--card);color:var(--tx);border-radius:20px;padding:18px;max-width:380px;width:100%;box-shadow:var(--sh)}
+.dlg p{margin:0 0 14px}
+.wn{color:var(--ex);font-weight:600}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.hero{position:relative;overflow:hidden;padding:20px}
+.hero::after{content:"";position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero::before{content:"";position:absolute;right:30px;bottom:-70px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-weight:800}
+.hero .hx{margin-left:auto;text-align:right;background:rgba(255,255,255,.18);border-radius:14px;padding:8px 12px}
+.hero .hx span{display:block;font-size:11px;opacity:.9;text-transform:uppercase;letter-spacing:.6px}
+.hero .hx b{font-size:22px;font-weight:800}
+.ct{font-weight:800;font-size:18px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--bg);padding:5px;border-radius:14px}
+.seg button{border:0;background:transparent;padding:10px 4px;border-radius:10px;font-weight:700;font-size:14px;color:var(--mut)}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:var(--sh)}
+#tp{display:none}
+.tot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tot div{text-align:left;padding:12px 14px}
+.tot b{font-size:28px;font-weight:800;line-height:1.1}
+.tot span{font-weight:600}
+.tot div:nth-child(1) span::before{content:"\1F4BC "}
+.tot div:nth-child(2) span::before{content:"\1F334 "}
+.tot div:nth-child(3) span::before{content:"\1F552 "}
+.tot div:nth-child(4) span::before{content:"\26A1 "}
+.row{border-top:0;border-left:5px solid var(--ac);background:var(--bg);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.row.tf{border-left-color:var(--fe)}
+.row.te{border-left-color:var(--ex)}
+.row.tp{border-left-color:#8b5cf6}
+.bl{border-top:1px solid var(--bd);padding:10px 0 4px;margin-top:10px}
+.bt{display:flex;justify-content:space-between;align-items:baseline;font-weight:700}
+.bt b{font-size:26px;font-weight:800}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.row small.ab{color:#8b5cf6;font-weight:600}
+.nt{display:block;color:var(--mut);margin-top:2px}
+.sd{display:grid;grid-template-columns:1.4fr 1fr .8fr .8fr;gap:8px;align-items:center;margin-top:10px}
+.sd input{padding:8px;border-radius:10px}
+.sh{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.sl{font-weight:700;font-size:14px}
+.mut{color:var(--mut);font-size:13px}
+.tot div:nth-child(5){background:color-mix(in srgb,#8b5cf6 14%,var(--card))}
+.tot div:nth-child(6){background:color-mix(in srgb,#d946ef 14%,var(--card))}
+.tot div:nth-child(6) span::before{content:"\23F3 "}
+.tot div:nth-child(7){grid-column:1/-1;background:color-mix(in srgb,var(--ex) 12%,var(--card))}
+.tot div:nth-child(7) span::before{content:"\26A1 "}
+.tot div:nth-child(5) span::before{content:"\1F551 "}
+button.p{font-weight:800;letter-spacing:.2px}
+.tm{position:relative}
+.tm input{padding-right:62px}
+.nw{position:absolute;right:6px;bottom:6px;padding:5px 11px;font-size:12px;font-weight:700;border-radius:999px;color:var(--ac)}
+@media (prefers-reduced-motion:reduce){.row{animation:none}button{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<header class="hero"><div class="ic">💳</div><div><h1>Registro ore</h1><p id="oggi"></p></div><div class="hx"><span>Extra del mese</span><b id="hx">0:00</b></div></header>
+<div class="card">
+  <div class="ct">Nuova giornata</div>
+  <div class="grid">
+    <div class="full"><label for="d">Data</label><input id="d" type="date"></div>
+    <div class="full"><label>Tipo di giornata</label><div class="seg" id="seg"><button data-v="w">💼 Lavoro</button><button data-v="f">🌴 Ferie</button><button data-v="e">⚡ Extra</button></div><select id="tp" aria-hidden="true" tabindex="-1"><option value="w">Lavoro</option><option value="f">Ferie</option><option value="e">Extra (giornata a parte, non a ore)</option></select></div>
+    <div class="tm"><label for="in">1ª entrata</label><input id="in" type="time"></div>
+    <div class="tm"><label for="out">1ª uscita</label><input id="out" type="time"></div>
+    <div class="tm"><label for="in2">2ª entrata</label><input id="in2" type="time"></div>
+    <div class="tm"><label for="out2">2ª uscita</label><input id="out2" type="time"></div>
+    <div class="aw full"><label>Assenze in ore (facoltative, anche insieme al lavoro)</label><div class="g3"><div><label for="af">🌴 Ferie</label><input id="af" type="number" min="0" max="12" step="0.25" inputmode="decimal" placeholder="0"></div><div><label for="ar">⏳ ROL</label><input id="ar" type="number" min="0" max="12" step="0.25" inputmode="decimal" placeholder="0"></div><div><label for="ap">🕑 Permesso</label><input id="ap" type="number" min="0" max="12" step="0.25" inputmode="decimal" placeholder="0"></div></div></div>
+    <div class="full"><label for="nt">Nota (luogo o tipo di lavoro)</label><input id="nt" type="text" maxlength="120" placeholder="es. Cantiere via Roma, sopralluogo"></div>
+  </div>
+  <p class="prev" id="prev">Inserisci entrata e uscita.</p>
+  <p></p>
+  <button class="p" id="save">Salva giornata</button>
+</div>
+<div class="card">
+  <div class="hd"><strong>Ferie, permessi e ROL</strong><span id="sy" class="mut"></span></div>
+  <p class="prev">Residuo a fine del mese scelto nell’archivio: parti dal saldo che hai in busta paga, ogni mese si aggiungono le ore maturate e si tolgono quelle che segni.</p>
+  <div class="g2"><div><label for="sm">Saldo di partenza a fine</label><input id="sm" type="month"></div><div></div></div>
+  <div class="bl"><div class="bt"><span>🌴 Ferie</span><b id="rf">–</b></div><small id="df" class="mut"></small><div class="g2"><div><label for="sf">Partenza (ore)</label><input id="sf" type="number" min="0" step="0.01" inputmode="decimal"></div><div><label for="mf">Maturano al mese (ore)</label><input id="mf" type="number" min="0" step="0.01" inputmode="decimal"></div></div></div>
+  <div class="bl"><div class="bt"><span>⏳ ROL</span><b id="rr">–</b></div><small id="dr" class="mut"></small><div class="g2"><div><label for="sr">Partenza (ore)</label><input id="sr" type="number" min="0" step="0.01" inputmode="decimal"></div><div><label for="mr">Maturano al mese (ore)</label><input id="mr" type="number" min="0" step="0.01" inputmode="decimal"></div></div></div>
+  <div class="bl"><div class="bt"><span>🕑 Permessi (ex festività)</span><b id="rp">–</b></div><small id="dp" class="mut"></small><div class="g2"><div><label for="sp">Partenza (ore)</label><input id="sp" type="number" min="0" step="0.01" inputmode="decimal"></div><div><label for="mp">Maturano al mese (ore)</label><input id="mp" type="number" min="0" step="0.01" inputmode="decimal"></div></div></div>
+</div>
+<div class="card">
+  <div class="hd"><strong>Archivio</strong><input id="m" type="month" aria-label="Mese"></div>
+  <div class="tot"><div><span>Giorni lavorati</span><b id="td">0</b></div><div><span>Ferie (ore)</span><b id="tf">0:00</b></div><div><span>Ore lavorate</span><b id="tw">0:00</b></div><div><span>Extra</span><b id="te" class="ex">0:00</b></div><div><span>Permessi</span><b id="tpm">0:00</b></div><div><span>ROL</span><b id="trl">0:00</b></div><div><span>Giornate extra</span><b id="tge">0</b></div></div>
+  <button id="cp" style="width:100%;margin-top:10px">Copia resoconto del mese</button>
+  <pre id="rep"></pre>
+  <div class="grid" style="margin-top:10px"><button id="xl">Scarica Excel</button><button id="pf">Scarica PDF</button></div>
+  <button id="bk" style="width:100%;margin-top:8px">Esporta tutti i dati (backup)</button>
+  <div id="list"></div>
+</div>
+<p id="st"></p>
+</main>
+<div id="ov" hidden><div class="dlg" role="dialog" aria-modal="true"><p id="dm"></p><div class="grid"><button id="dn">Annulla</button><button id="dy" class="p">Conferma</button></div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+var ed=null,LIM=480,LS="registro-ore-v1",DK="registro-ore-bozza-v1",SK="registro-ore-saldi-v1",entries={},col=null,sd={},DT=null,ST=null,$=function(i){return document.getElementById(i)};
+function hm(m){var s=m<0?"-":"";m=Math.abs(Math.round(m));return s+Math.floor(m/60)+":"+String(m%60).padStart(2,"0")}
+function tm(t){if(!t)return null;var p=t.split(":");return +p[0]*60+ +p[1]}
+function hv(m){return m?Math.round(m/60*100)/100:""}
+function num(id){return Math.round((parseFloat($(id).value)||0)*60)}
+function dec(x){return Math.round(x/60*100)/100}
+function dI(k){return k.split('-').reverse().join('/')}
+function say(t){$('st').textContent=t}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function absOf(e){var f=0,r=0,p=0;if(e.t==="f")f=LIM;else{f=+e.fo||0;r=(+e.ro||0)+(e.t==="p"&&e.pk==="r"?(+e.pm||0):0);p=(+e.po||0)+(e.t==="p"&&e.pk!=="r"?(+e.pm||0):0)}return{f:f,r:r,p:p}}
+function calc(e){if(e.t==="e")return{w:0,x:0,br:0,f:0,r:0,p:0};var A=absOf(e),a=tm(e.in),b=tm(e.out),c=tm(e.in2),d=tm(e.out2),w,br=0;if(e.t==="f"||a==null||b==null){return(e.t==="f"||A.f+A.r+A.p>0)?{w:0,x:0,br:0,f:A.f,r:A.r,p:A.p}:null}if(b<a)b+=1440;w=b-a;if(c!=null&&d!=null){if(c<b)c+=1440;if(d<c)d+=1440;br=c-b;w+=d-c}else{br=+e.br||0;w=Math.max(0,w-br)}return{w:w,x:e.t==="e"?w:Math.max(0,w-LIM),br:br,f:A.f,r:A.r,p:A.p}}
+function read(){var f=$("tp").value==="f"||$("tp").value==="e";return{t:$("tp").value,in:f?"":$("in").value,out:f?"":$("out").value,in2:f?"":$("in2").value,out2:f?"":$("out2").value,fo:f?0:num("af"),ro:f?0:num("ar"),po:f?0:num("ap"),nt:$("nt").value.trim()}}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function fmtD(k){var p=k.split("-"),d=new Date(+p[0],+p[1]-1,+p[2]);return d.toLocaleDateString("it-IT",{weekday:"short",day:"numeric",month:"short"})}
+function absTxt(c){var p=[];if(c.f)p.push("Ferie "+hm(c.f));if(c.r)p.push("ROL "+hm(c.r));if(c.p)p.push("Permesso "+hm(c.p));return p.join(" · ")}
+function chk(e){if(e.t==="f"||e.t==="e"||!e.in)return '';var c=calc(e);if(!c)return '';var w=[],a=tm(e.in),b=tm(e.out);if(b<a)w.push('uscita prima dell’entrata (la conto oltre la mezzanotte)');if(e.in2&&e.out2&&tm(e.in2)<b&&b>=a)w.push('2ª entrata prima della 1ª uscita');if(c.w>720)w.push('più di 12 ore lavorate');if(c.w===0)w.push('0 ore lavorate');if(c.br>240)w.push('pausa oltre 4 ore');return w.join(', ')}
+function preview(){var v=$("tp").value;document.querySelectorAll("#seg button").forEach(function(b){b.classList.toggle("on",b.dataset.v===v)});document.querySelectorAll(".aw").forEach(function(n){n.style.display=(v==="f"||v==="e")?"none":""});document.querySelectorAll(".tm").forEach(function(n){n.style.display=(v==="f"||v==="e")?"none":""});if(v==="e"){$("prev").textContent="Giornata extra: conta come giorno a parte, non in ore. Non servono orari.";return}if(v==="f"){$("prev").textContent="Ferie per l’intera giornata ("+hm(LIM)+"). Per poche ore scegli Lavoro e compila le assenze.";return}var c=calc(read()),ab=c?absTxt(c):"";$("prev").innerHTML=c?"Lavorate: <b>"+hm(c.w)+"</b> · Pausa: <b>"+hm(c.br)+"</b> · Extra: <b class=\"ex\">"+hm(c.x)+"</b>"+(ab?"<br>"+ab:"")+(chk(read())?"<br><span class=\"wn\">⚠ Controlla: "+chk(read())+"</span>":""):($("in").value?"Entrata alle "+$("in").value+" tenuta in memoria su questo dispositivo: quando finisci, inserisci l\u2019uscita e salva.":"Inserisci entrata e uscita, oppure le ore di assenza.")}
+function tot(keys){var T={w:0,x:0,f:0,r:0,p:0,n:0,e:0};keys.forEach(function(k){var c=calc(entries[k])||{w:0,x:0,f:0,r:0,p:0};T.w+=c.w;T.x+=c.x;T.f+=c.f||0;T.r+=c.r||0;T.p+=c.p||0;if(c.w>0)T.n++;if(entries[k].t==="e")T.e++});return T}
+function render(){
+  var m=$("m").value,keys=Object.keys(entries).filter(function(k){return k.indexOf(m)===0}).sort().reverse(),T=tot(keys),h="";
+  keys.forEach(function(k){var e=entries[k],c=calc(e)||{w:0,x:0,br:0,f:0,r:0,p:0},ab=e.t==="f"?"":absTxt(c),cls=e.t==="f"?"f":e.t==="e"?"e":(c.f||c.r||c.p)?"p":"w",tl=e.t==="f"?"Ferie · giornata intera":e.t==="e"?"Giornata extra · non a ore":(e.in?e.in+"–"+e.out+(e.in2&&e.out2?" · "+e.in2+"–"+e.out2:"")+" · pausa "+hm(c.br||0):"");
+    h+="<div class=\"row t"+cls+"\"><div><b>"+fmtD(k)+"</b>"+(tl?"<small>"+tl+"</small>":"")+(ab?"<small class=\"ab\">"+ab+"</small>":"")+(e.nt?"<small class=\"nt\">📍 "+esc(e.nt)+"</small>":"")+"</div><div style=\"text-align:right\"><b>"+(e.t==="f"?"Ferie":e.t==="e"?"Extra":hm(c.w))+"</b>"+(c.x?"<small class=\"ex\">+"+hm(c.x)+" extra</small>":"")+"</div><div class=\"acts\"><button data-e=\""+k+"\" aria-label=\"Modifica\">✎</button><button class=\"del\" data-x=\""+k+"\" aria-label=\"Elimina\">✕</button></div></div>"});
+  $("list").innerHTML=h||"<p class=\"prev\">Nessuna giornata in questo mese.</p>";
+  $("td").textContent=T.n;$("tf").textContent=hm(T.f);$("tw").textContent=hm(T.w);$("te").textContent=hm(T.x);$("hx").textContent=hm(T.x);$("tpm").textContent=hm(T.p);$("trl").textContent=hm(T.r);$("tge").textContent=T.e;report(keys,T);renderSaldi();
+}
+function report(keys,T){var p=$("m").value.split("-"),lb=new Date(+p[0],+p[1]-1,1).toLocaleDateString("it-IT",{month:"long",year:"numeric"}),t="Resoconto "+lb+"\nGiorni lavorati: "+T.n+"\nOre lavorate: "+hm(T.w)+"\nOre extra totali: "+hm(T.x)+"\nOre di ferie: "+hm(T.f)+"\nOre ROL: "+hm(T.r)+"\nOre di permesso: "+hm(T.p)+"\nGiornate extra: "+keys.filter(function(k){return entries[k].t==="e"}).length+"\n\nDettaglio:";keys.slice().sort().forEach(function(k){var e=entries[k],c=calc(e)||{w:0,x:0,f:0,r:0,p:0},ab=e.t==="f"?"":absTxt(c),a=[];if(e.t==="f")a.push("ferie giornata intera");else if(e.t==="e")a.push("giornata extra (non a ore)");else{if(c.w>0||!ab)a.push((e.t==="e"?"giornata extra ":"")+hm(c.w)+(c.x?" (extra "+hm(c.x)+")":""));if(ab)a.push(ab)}t+="\n"+fmtD(k)+": "+a.join(" + ")+(e.nt?" — "+e.nt:"")});$("rep").textContent=keys.length?t:"Nessuna giornata registrata in questo mese."}
+function mdata(){var m=$('m').value,p=m.split('-'),lb=new Date(+p[0],+p[1]-1,1).toLocaleDateString('it-IT',{month:'long',year:'numeric'}),ks=Object.keys(entries).filter(function(k){return k.indexOf(m)===0}).sort();return{m:m,lb:lb.charAt(0).toUpperCase()+lb.slice(1),r:ks.map(function(k){var e=entries[k];return{k:k,e:e,c:calc(e)||{w:0,x:0,br:0,f:0,r:0,p:0}}}),T:tot(ks)}}
+var XH=['Data','Tipo','1ª entrata','1ª uscita','2ª entrata','2ª uscita','Pausa (ore)','Ore lavorate','Extra (ore)','Ferie (ore)','ROL (ore)','Permesso (ore)','Nota'];
+function typeLab(e,c){return e.t==='f'?'Ferie':e.t==='e'?'Extra':(c.f||c.r||c.p)?(c.w>0?'Lavoro + assenza':'Assenza'):'Lavoro'}
+function xrow(k,e,c,cs){var z=e.t==='f',nt=!z&&!e.in,q=function(x){var v=dec(x);return cs?String(v).replace('.',','):v},n=function(x){return x?q(x):''};return [dI(k),typeLab(e,c),z?'':(e.in||''),z?'':(e.out||''),z?'':(e.in2||''),z?'':(e.out2||''),(z||nt)?'':q(c.br||0),(z||nt)?'':q(c.w),(z||nt)?'':q(c.x),n(c.f),n(c.r),n(c.p),e.nt||'']}
+async function dl(name,data){try{var d=await claude.use('downloads');if(!d){say('Il download non è disponibile in questa pagina.');return}await d.save({filename:name,data:data});say('File pronto: '+name)}catch(e){say(e&&e.code==='declined'?'Download annullato.':'Download non riuscito, riprova.')}}
+function ask(msg,cb){$("dm").textContent=msg;$("ov").hidden=false;$("dy").onclick=function(){$("ov").hidden=true;cb()};$("dn").onclick=function(){$("ov").hidden=true}}
+function dform(){return{d:$("d").value,t:$("tp").value,in:$("in").value,out:$("out").value,in2:$("in2").value,out2:$("out2").value,af:$("af").value,ar:$("ar").value,ap:$("ap").value,nt:$("nt").value}}
+function dfull(o){return !!(o.in||o.out||o.in2||o.out2||o.af||o.ar||o.ap||o.nt)}
+function fillDraft(o){$("d").value=o.d||today();$("tp").value=(o.t==="f"||o.t==="e")?o.t:"w";$("in").value=o.in||"";$("out").value=o.out||"";$("in2").value=o.in2||"";$("out2").value=o.out2||"";$("af").value=o.af||"";$("ar").value=o.ar||"";$("ap").value=o.ap||"";$("nt").value=o.nt||"";$("m").value=($("d").value||today()).slice(0,7)}
+function saveDraft(){var o=dform(),ok=true;try{if(dfull(o))localStorage.setItem(DK,JSON.stringify(o));else localStorage.removeItem(DK)}catch(e){ok=false}clearTimeout(DT);DT=setTimeout(function(){if(!col)return;(dfull(o)?col.doc("bozza").set(o):col.doc("bozza").delete()).catch(function(){})},500);if(dfull(o))say(ok||col?"Bozza salvata \u2713":"Attenzione: la bozza non si salva su questo dispositivo.")}
+function clearDraft(){try{localStorage.removeItem(DK)}catch(e){}clearTimeout(DT);if(col)col.doc("bozza").delete().catch(function(){})}
+function loadDraft(){try{var o=JSON.parse(localStorage.getItem(DK)||"null");if(o&&dfull(o))fillDraft(o)}catch(e){}}
+var DEF={m:"2026-10",f:106,r:44,p:0,mf:14.44,mr:6,mp:2.67};
+function cfg(){return(sd&&sd.m!==undefined)?sd:(DEF||{})}
+function mdif(a,b){return(+b.slice(0,4)*12+ +b.slice(5,7))-(+a.slice(0,4)*12+ +a.slice(5,7))}
+function renderSaldi(){var c=cfg(),M=$("m").value,S=c.m||"",ok=/^\d{4}-\d{2}$/.test(S)&&/^\d{4}-\d{2}$/.test(M);$("sy").textContent=M?new Date(+M.slice(0,4),+M.slice(5,7)-1,1).toLocaleDateString("it-IT",{month:"long",year:"numeric"}):"";if(document.activeElement!==$("sm"))$("sm").value=S;[["f","sf","mf","rf","df"],["r","sr","mr","rr","dr"],["p","sp","mp","rp","dp"]].forEach(function(r){var k=r[0],i=$(r[1]),j=$(r[2]);if(document.activeElement!==i)i.value=c[k]==null?"":c[k];if(document.activeElement!==j)j.value=c["m"+k]==null?"":c["m"+k];var st=parseFloat(i.value)||0,rate=parseFloat(j.value)||0;if(!ok){$(r[3]).textContent="–";$(r[4]).textContent="Imposta il mese di partenza.";return}var n=mdif(S,M);if(n<0){$(r[3]).textContent="–";$(r[4]).textContent="Il mese scelto è prima del saldo di partenza.";return}var used=0;Object.keys(entries).forEach(function(d){var km=d.slice(0,7);if(km>S&&km<=M){var cc=calc(entries[d])||{};used+=cc[k]||0}});var acc=rate*60*n;$(r[3]).textContent=hm(st*60+acc-used);$(r[4]).textContent=hm(st*60)+" di partenza + "+hm(acc)+" maturate − "+hm(used)+" usate"})}
+function saldiSave(){var g=function(i){var v=parseFloat($(i).value);return isNaN(v)?null:v};sd={m:$("sm").value,f:g("sf"),r:g("sr"),p:g("sp"),mf:g("mf"),mr:g("mr"),mp:g("mp"),_t:Date.now()};try{localStorage.setItem(SK,JSON.stringify(sd))}catch(e){}clearTimeout(ST);ST=setTimeout(function(){if(col)col.doc("saldi").set(sd).catch(function(){})},500);renderSaldi()}
+function lsSave(){try{localStorage.setItem(LS,JSON.stringify(entries))}catch(e){}}
+function lsLoad(){try{entries=JSON.parse(localStorage.getItem(LS)||"{}")||{}}catch(e){entries={}}}
+function put(k,e){entries[k]=e;render();if(col){col.doc(k).set(e).catch(function(){say("Salvataggio non riuscito, riprova.")})}else lsSave()}
+function del(k){delete entries[k];render();if(col){col.doc(k).delete().catch(function(){})}else lsSave()}
+$("save").onclick=function(){var k=$("d").value,e=read(),hasA=e.fo||e.ro||e.po,bad=!k||(e.t!=="f"&&e.t!=="e"&&((!!e.in!==!!e.out)||(!!e.in2!==!!e.out2)||(!e.in&&!hasA)));if(bad){$("prev").textContent="Compila data e orari, oppure le ore di assenza.";return}var m=[],w=chk(e);if(w)m.push("Controlla: "+w+".");if(entries[k]&&k!==ed)m.push("Per questa data esiste già una giornata: verrà sostituita.");var go=function(){if(ed&&ed!==k)del(ed);put(k,e);ed=null;["in","out","in2","out2","af","ar","ap","nt"].forEach(function(i){$(i).value=""});$("tp").value="w";clearDraft();$("m").value=k.slice(0,7);render();preview()};if(m.length)ask(m.join(" ")+" Salvare?",go);else go()};
+$("list").onclick=function(ev){var t=ev.target.closest("button");if(!t)return;if(t.dataset.x){var xk=t.dataset.x;ask("Eliminare la giornata del "+dI(xk)+"?",function(){if(ed===xk)ed=null;del(xk)})}else if(t.dataset.e){ed=t.dataset.e;var e=entries[ed],A=absOf(e);$("d").value=ed;$("tp").value=(e.t==="f"||e.t==="e")?e.t:"w";$("in").value=e.in||"";$("out").value=e.out||"";$("in2").value=e.in2||"";$("out2").value=e.out2||"";$("af").value=e.t==="f"?"":hv(A.f);$("ar").value=hv(A.r);$("ap").value=hv(A.p);$("nt").value=e.nt||"";preview();window.scrollTo(0,0)}};
+["in","out","in2","out2","af","ar","ap"].forEach(function(i){$(i).oninput=function(){preview();saveDraft()}});
+$("nt").oninput=saveDraft;
+$('bk').onclick=function(){var ks=Object.keys(entries).sort();if(!ks.length){say('Non ci sono ancora dati da esportare.');return}var t=XH.join(';')+'\n';ks.forEach(function(k){var e=entries[k],c=calc(e)||{w:0,x:0,br:0,f:0,r:0,p:0},r=xrow(k,e,c,true);r[12]=String(r[12]).replace(/[;\r\n]+/g,' ');t+=r.join(';')+'\n'});dl('registro-ore-completo.csv','\ufeff'+t)};
+$('xl').onclick=function(){var D=mdata(),T=D.T;if(!window.XLSX){say('Libreria Excel non caricata.');return}if(!D.r.length){say('Nessuna giornata in questo mese.');return}var a=[['Resoconto '+D.lb],[],XH];D.r.forEach(function(r){a.push(xrow(r.k,r.e,r.c,false))});a.push([],['Giorni lavorati',T.n],['Giornate extra',T.e],['Ore lavorate',dec(T.w)],['Ore extra totali',dec(T.x)],['Ore di ferie',dec(T.f)],['Ore ROL',dec(T.r)],['Ore di permesso',dec(T.p)]);var ws=XLSX.utils.aoa_to_sheet(a);ws['!cols']=[{wch:16},{wch:16},{wch:11},{wch:11},{wch:11},{wch:11},{wch:12},{wch:13},{wch:12},{wch:12},{wch:10},{wch:14},{wch:30}];var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Resoconto');dl('resoconto-ore-'+D.m+'.xlsx',XLSX.write(wb,{bookType:'xlsx',type:'array'}))};
+$('pf').onclick=function(){var D=mdata(),T=D.T;if(!window.jspdf){say('Libreria PDF non caricata.');return}if(!D.r.length){say('Nessuna giornata in questo mese.');return}var doc=new window.jspdf.jsPDF({unit:'mm',format:'a4'}),y=20;doc.setFontSize(18);doc.text('Resoconto '+D.lb,15,y);y+=10;doc.setFontSize(11);[['Giorni lavorati',String(T.n)],['Giornate extra',String(T.e)],['Ore lavorate',hm(T.w)],['Ore extra totali',hm(T.x)],['Ore di ferie',hm(T.f)],['Ore ROL',hm(T.r)],['Ore di permesso',hm(T.p)]].forEach(function(t){doc.setFont('helvetica','bold');doc.text(t[0]+':',15,y);doc.setFont('helvetica','normal');doc.text(t[1],60,y);y+=6});y+=6;function head(){doc.setFont('helvetica','bold');doc.text('Data',15,y);doc.text('Orari',45,y);doc.text('Pausa',115,y);doc.text('Ore',142,y);doc.text('Extra',168,y);doc.line(15,y+2,195,y+2);y+=8;doc.setFont('helvetica','normal')}head();D.r.forEach(function(r){if(y>272){doc.addPage();y=20;head()}var e=r.e,c=r.c,L=[];doc.text(dI(r.k)+(e.t==='e'?' *':''),15,y);if(e.in){doc.text(e.in+'-'+e.out+(e.in2&&e.out2?' / '+e.in2+'-'+e.out2:''),45,y);doc.text(hm(c.br||0),115,y);doc.text(hm(c.w),142,y);doc.text(c.x?hm(c.x):'-',168,y)}else{doc.text(e.t==='f'?'Ferie giornata intera':e.t==='e'?'Giornata extra':'Assenza',45,y)}if(e.t!=='f'&&absTxt(c))L.push(absTxt(c));if(e.nt)L.push(e.nt);if(L.length){y+=5;doc.setFontSize(9);doc.text(L.join('  |  ').slice(0,100),15,y);doc.setFontSize(11)}y+=7});if(D.r.some(function(r){return r.e.t==='e'}))doc.text('* giornata extra (non conteggiata a ore)',15,y+2);dl('resoconto-ore-'+D.m+'.pdf',doc.output('arraybuffer'))};
+$("seg").onclick=function(ev){var b=ev.target.closest("button");if(!b)return;$("tp").value=b.dataset.v;preview();saveDraft()};
+$("tp").onchange=preview;$("cp").onclick=function(){var t=$("rep").textContent;try{navigator.clipboard.writeText(t).then(function(){$("cp").textContent="Copiato ✓"},function(){$("cp").textContent="Selezionalo e copialo a mano"})}catch(e){$("cp").textContent="Selezionalo e copialo a mano"}setTimeout(function(){$("cp").textContent="Copia resoconto del mese"},2500)};
+$("m").onchange=render;
+$("oggi").textContent=new Date().toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});$("d").value=today();$("m").value=today().slice(0,7);
+lsLoad();loadDraft();
+["in","out","in2","out2"].forEach(function(i){var b=document.createElement("button");b.type="button";b.className="nw";b.textContent="Ora";b.onclick=function(){var d=new Date();$(i).value=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");preview();saveDraft()};$(i).parentNode.appendChild(b)});
+$("d").onchange=saveDraft;
+try{sd=JSON.parse(localStorage.getItem(SK)||"{}")||{}}catch(e){sd={}}
+["sm","sf","sp","sr","mf","mr","mp"].forEach(function(i){$(i).oninput=saldiSave;$(i).onchange=saldiSave});
+render();preview();
+(async function(){
+  try{
+    if(!window.claude)throw 0;
+    var db=await claude.use("db"),u=await claude.use("user");
+    if(!db||!u)throw 0;
+    var id=await u.id();col=db.collection("data/users/"+id);
+    var legacy=entries,dd=0;
+    col.onSnapshot(function(s){var n={},dr=null;s.docs.forEach(function(d){if(d.id==="bozza")dr=d.data();else if(d.id==="saldi"){var nd=d.data()||{};if(!(sd._t>(nd._t||0)))sd=nd}else n[d.id]=d.data()});entries=n;render();if(!dd){dd=1;if(dr&&dfull(dr)&&!dfull(dform())){fillDraft(dr);render();preview()}}},function(){});
+    Object.keys(legacy).forEach(function(k){col.doc(k).set(legacy[k]).catch(function(){})});
+    try{localStorage.removeItem(LS)}catch(e){}
+    $("st").textContent="Dati salvati nel tuo spazio privato.";
+  }catch(e){$("st").textContent="Dati salvati solo su questo dispositivo."}
+})();
+})();
+</script>
+</body>
+</html>
